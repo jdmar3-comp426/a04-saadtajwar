@@ -31,8 +31,9 @@ app.post("/app/new/", (req, res) => {
 	const pass = body.pass;
 	const stmt = db.prepare('INSERT INTO userinfo (user, pass) VALUES (?, ?)')
 	const info = stmt.run(user, pass);
+	const newId = info.lastInsertRowid;
 	res.status(201).json({
-		message: `1 record created: ID 3 (201)`
+		message: `1 record created: ID ${newId} (201)`
 	})
 })
 
