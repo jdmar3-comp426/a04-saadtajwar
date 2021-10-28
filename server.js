@@ -54,7 +54,9 @@ app.delete("/app/delete/user/:id", (req, res) => {
 	const id = req.params.id;
 	const stmt = db.prepare('DELETE FROM userinfo WHERE id = ?');
 	const info = stmt.run(id);
-	res.json(info);
+	res.status(200).json({
+		message: `1 record deleted: ID ${id} (200)`
+	})
 })
 
 // Default response for any other request
