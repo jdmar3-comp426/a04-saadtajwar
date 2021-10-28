@@ -28,7 +28,7 @@ app.get("/app/", (req, res, next) => {
 app.post("/app/new/", (req, res) => {
 	const body = req.body;
 	const user = body.user;
-	const pass = body.pass;
+	const pass = md5(body.pass);
 	const stmt = db.prepare('INSERT INTO userinfo (user, pass) VALUES (?, ?)')
 	const info = stmt.run(user, pass);
 	const newId = info.lastInsertRowid;
@@ -55,7 +55,7 @@ app.patch("/app/update/user/:id", (req, res) => {
 	const id = req.params.id;
 	const body = req.body;
 	const user = body.user;
-	const pass = body.pass;
+	const pass = md5(body.pass);
 	const stmt = db.prepare(`UPDATE userinfo SET user = COALESCE(?, user), pass = COALESCE(?, pass) WHERE id = ${id}`);
 	const info = stmt.run(user, pass);
 	res.status(200).json({
