@@ -57,7 +57,7 @@ app.patch("/app/update/user/:id", (req, res) => {
 	const user = body.user;
 	const pass = md5(body.pass);
 	const stmt = db.prepare(`UPDATE userinfo SET user = COALESCE(?, user), pass = COALESCE(?, pass) WHERE id = ${id}`);
-	const info = stmt.run(user, pass);
+	const info = stmt.run(req.body.user, md5(body.pass));
 	res.status(200).json({
 		message: `1 record updated: ID ${id} (200)`
 	});
