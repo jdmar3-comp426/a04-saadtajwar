@@ -33,7 +33,7 @@
     {
       "name": "POST NEW",
       "setup": "SHELL=/bin/bash && npm install --silent",
-      "run": "(timeout 5s node server.js; exit 0) & sleep 1s && curl -s -X POST -d \"user=newtest&pass=supersecurepassword\" http://localhost:5000/app/new/user/ && curl -s -X GET http://localhost:5000/app/user/3/ && sleep 5s",
+      "run": "(timeout 5s node server.js; exit 0) & sleep 1s && curl -s -X POST -d \"user=newtest&pass=supersecurepassword\" http://localhost:5000/app/new/ && curl -s -X GET http://localhost:5000/app/user/3/ && sleep 5s",
       "input": "",
       "output": "{\"message\":\"1 record created: ID 3 (201)\"}{\"id\":3,\"user\":\"newtest\",\"pass\":\"38a7744f5523335db845ff1976bf4747\"}",
       "comparison": "included",
